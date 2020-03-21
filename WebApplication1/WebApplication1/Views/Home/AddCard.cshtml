@@ -1,0 +1,53 @@
+﻿@model WebApplication1.Models.Card
+
+@{
+    ViewData["Title"] = "AddCard";
+}
+
+<h2>AddCard</h2>
+
+<h4>Card</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCard">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value=""/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art" class="control-label"></label>
+                <input asp-for="Art" class="form-control" value="TODO" />
+                <span asp-validation-for="Art" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Legality" class="control-label"></label>
+                @{
+                    foreach (var f in ViewBag.Formats)
+                    {
+                <div>
+                    @*<input type="checkbox" id="@f.Name" value="@f.FormatId" name="@f.Name" checked />*@
+                    <input type="checkbox" id="@f.Name" value="@f.FormatId" name="Legality" checked />
+                    <label for="@f.Name">@f.Name</label>
+                </div>
+                    }
+                }
+               
+                <span asp-validation-for="Legality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
