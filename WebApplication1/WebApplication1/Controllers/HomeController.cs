@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
@@ -81,10 +82,25 @@ namespace WebApplication1.Controllers
         {
 
             db.DecklistEntries.AddRange(decklist.DecklistEntries);
-            var tmp = db.DecklistEntries.ToList().Count;
             db.SaveChanges();
-            tmp = db.DecklistEntries.ToList().Count;
             return RedirectToAction("Index");
+        }
+
+        public IActionResult ViewDeck(string name)
+        {
+            if (db.Decks.Where(d => d.Name == name).Any())
+            {
+                Decklist decklist = new Decklist
+                {
+                    DeckName = name,
+                    DecklistEntries = db.DecklistEntries.Include("Deck").Include("Card").Where(dle => dle.Deck.Name == name).ToList<DecklistEntry>()
+                };
+                return View(decklist);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

@@ -95,8 +95,9 @@
 
 </div>
 
-<a href="Home/AddCard">AddCard</a>
-<a href="Home/AddDecklist">AddDeck</a>
+<div><a href="Home/AddCard">AddCard</a></div>
+<div><a href="Home/AddDecklist">AddDeck</a></div>
+<div><input type ="text" id="deckName"><input type="button" value="ViewDeck" onclick="location.href='@Url.Action("ViewDeck", "Home")?name=' + $('#deckName').val()"> </div>
 
 @{ 
     foreach (var c in ViewBag.Cards)

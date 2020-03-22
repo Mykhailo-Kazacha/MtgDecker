@@ -1,0 +1,67 @@
+﻿@model WebApplication1.Models.Decklist
+
+@{
+    ViewData["Title"] = "ViewDeck";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewDeck</h2>
+
+<div>
+    <h4>DecklistEntry</h4>
+    @Html.DisplayNameFor(model => model.DeckName)
+    @Html.DisplayFor(model => model.Comment)
+    <hr />
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <td>
+                    CardName
+                </td>
+                <td>
+                    Quantity
+                </td>
+                <td>
+                    Sideboard
+                </td>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @{
+                foreach (var dl in Model.DecklistEntries.Where(dle => dle.IsSideboard == false))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => dl.Card.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => dl.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => dl.IsSideboard)
+                        </td>
+                    </tr>
+                }
+                foreach (var dl in Model.DecklistEntries.Where(dle => dle.IsSideboard == true))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => dl.Card.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => dl.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => dl.IsSideboard)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

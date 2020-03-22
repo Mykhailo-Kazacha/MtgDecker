@@ -32,3 +32,4 @@ D:\UserData\Desktop\Decker\WebApplication1\WebApplication1\obj\Debug\netcoreapp2
 D:\UserData\Desktop\Decker\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.1\WebApplication1.csproj.CopyComplete
 D:\UserData\Desktop\Decker\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.1\Razor\Views\Home\AddCard.g.cshtml.cs
 D:\UserData\Desktop\Decker\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.1\Razor\Views\Home\AddDecklist.g.cshtml.cs
+D:\UserData\Desktop\Decker\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.1\Razor\Views\Home\ViewDeck.g.cshtml.cs
